@@ -22,7 +22,7 @@ public class dbConnectors {
     
     public dbConnectors(){
             try{
-                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/jobapplicationtrackers", "root", "");
+                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/jobapplicationtracker", "root", "");
             }catch(SQLException ex){
                     System.out.println("Can't connect to database: "+ex.getMessage());
             }

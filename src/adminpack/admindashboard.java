@@ -182,7 +182,7 @@ public class admindashboard extends javax.swing.JFrame {
         
         if(sess.getUid()== 0){
             JOptionPane.showMessageDialog(null, "No Account!, Login First!!!");
-            loginForm lf = new loginForm();
+            login lf = new login();
             lf.setVisible(true);
             this.dispose();
         }else{
