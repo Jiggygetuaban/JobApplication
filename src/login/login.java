@@ -6,12 +6,14 @@
 package login;
 
 import adminpack.admindashboard;
+import config.Session;
 import config.dbConnectors;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import register.register;
 import userpack.userdashboard;
+
 
 /**
  *
@@ -31,14 +33,21 @@ public class login extends javax.swing.JFrame {
     
     public static boolean loginAcc(String username, String password){
         dbConnectors connector = new dbConnectors();
+        
         try{
             String query = "SELECT * FROM tbl_users  WHERE u_username = '" + username + "' AND u_password = '" + password + "'";
             ResultSet resultSet = connector.getData(query);
-            
             if(resultSet.next()){
                 status = resultSet.getString("u_status");
                 roles = resultSet.getString("u_role");
-                
+                Session sess = Session.getInstance();
+                sess.setUid(resultSet.getInt("u_id"));
+                sess.setFname(resultSet.getString("u_fname"));
+                 sess.setLname(resultSet.getString("u_lname"));
+                 sess.setEmail(resultSet.getString("u_email"));
+                 sess.setUsername(resultSet.getString("u_username"));
+                 sess.setRole(resultSet.getString("u_role"));
+                 sess.setStatus(resultSet.getString("u_status"));
                 return true;
             }else{
                 return false;
